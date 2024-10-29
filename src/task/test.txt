@@ -1,0 +1,87 @@
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import PropTypes from "prop-types";
+function AppView({
+                     // LocalizedFragment(srcDico)(({
+                     onTestFonction,
+                     variableString,
+                     variable1String,
+                     variable2String,
+                     variable3String,
+                     onTest1Fonction,
+                     variableStringToInt,
+                     // }) => (
+                 }) {
+    const [count, setCount] = useState(0)
+
+    return (
+        <>
+            <div>
+                <a href="https://vitejs.dev" target="_blank">
+                    <img src={viteLogo} className="logo" alt="Vite logo" />
+                </a>
+                <a href="https://react.dev" target="_blank">
+                    <img src={reactLogo} className="logo react" alt="React logo" />
+                </a>
+            </div>
+            <h1>Vite + React</h1>
+            <div>
+                {onTestFonction}
+                {onTest1Fonction}
+                <table>
+                    <thead>
+                    <tr>
+                        {variableStringToInt}
+                        {/* TODO a detecter */}
+                    </tr>
+                    <tr>
+                        <td>
+                            {variable1String}
+                        </td>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <p>{variableString}</p>
+            <p>{variable1String}</p>
+            <p>{variable2String}</p>
+            <p>{variable3String}</p>
+
+            <div className="card">
+                <button onClick={() => setCount((count) => count + 1)}>
+                    count is {count}
+                </button>
+                <p>
+                    Edit <code>src/App.jsx</code> and save to test HMR
+                </p>
+            </div>
+            <p className="read-the-docs">
+                Click on the Vite and React logos to learn more
+            </p>
+        </>
+    )
+}
+
+// prop types validation
+AppView.propTypes = {
+    variableString: PropTypes.string,
+    onTestFonction: PropTypes.func.isRequired,
+    variable1String: PropTypes.string,
+    variable2String: PropTypes.string,
+    variable3String: PropTypes.string,
+    onTest1Fonction: PropTypes.func.isRequired,
+    variableStringToInt: PropTypes.string,
+}
+
+// default props
+AppView.defaultProps = {
+    variableString: null,
+    variable1String: null,
+    variable2String: null,
+    variable3String: null,
+};
+
+export default AppView
