@@ -25,7 +25,6 @@ public class PropsTypeCleanTask {
             String cleanedContent = content.replace(" ", "").replace("\n", "").replace("\t", "").replace(",", "");
             listImportedProps.add(cleanedContent);
         }
-        System.out.println(listImportedProps);
 
         // Trouver les propriétés à vérifier
         int indexStartToCheck = Utils.getLineIndex(contents, Dico.Regex.MATCH_PROPS_TYPE);
@@ -37,13 +36,10 @@ public class PropsTypeCleanTask {
             String prop = content.split(":")[0].replace(" ", "").replace("\n", "").replace("\t", "").replace(",", "");
             listPropsToCheck.add(prop);
         }
-        System.out.println(listPropsToCheck);
 
         // Identifier les propriétés à supprimer
         Set<String> propsToDeleteSet = new HashSet<>(listPropsToCheck);
         propsToDeleteSet.removeAll(listImportedProps);
-        List<String> listPropsToDelete = new ArrayList<>(propsToDeleteSet);
-        System.out.println(listPropsToDelete);
 
         // Supprimer les propriétés inutiles dans le contenu
         List<Integer> uniqueElementsWithIndices = new ArrayList<>();
@@ -58,11 +54,5 @@ public class PropsTypeCleanTask {
         }
 
         return contents;
-    }
-
-    public static void main(String[] args) {
-        List<String> contents = EditFileUtils.readFile("C:\\Users\\lefeb\\IdeaProjects\\Clean Code Java\\src\\task\\test.txt");
-        contents = propsTypeCleanTask(contents);
-        EditFileUtils.setContents("C:\\Users\\lefeb\\IdeaProjects\\Clean Code Java\\src\\task\\test.txt", contents);
     }
 }

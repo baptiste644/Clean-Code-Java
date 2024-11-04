@@ -27,15 +27,4 @@ public class EndCleanToExecuteTask {
         }
         EditFileUtils.setContents(path, contents);
     }
-
-    public static void main(String[] args) {
-        // Simulons un événement
-        String event = "Simulated Action Event";
-
-        // Exemple de liste
-        List<String> exampleList = List.of("SomeOtherType", "PropsType");
-
-        // Appel de la méthode pour exécuter les tâches de nettoyage
-        endCleanTaskToExecute(event, exampleList);
-    }
 }

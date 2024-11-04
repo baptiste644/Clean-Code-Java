@@ -25,22 +25,16 @@ public class DefaultPropsTypeCleanTask {
 
         List<String> listImportedProps = contents.subList(indexStart, indexEnd).stream()
                 .map(content -> content.replace(" ", "").replace("\n", "").replace("\t", "").replace(",", ""))
-                .collect(Collectors.toList());
-        System.out.println(listImportedProps);
+                .toList();
 
         int indexStartToCheck = Utils.getLineIndex(contents, Dico.Regex.MATCH_DEFAULT_PROPS);
         int indexEndToCheck = Utils.getLineIndexFromStart(contents, Dico.Regex.MATCH_BRACKET_AND_COMMA_POINT, indexStartToCheck) - 1;
 
         List<String> listPropsToCheck = contents.subList(indexStartToCheck, indexEndToCheck).stream()
                 .map(content -> content.split(":")[0].replace(" ", "").replace("\n", "").replace("\t", "").replace(",", ""))
-                .collect(Collectors.toList());
-        System.out.println(listPropsToCheck);
+                .toList();
 
         Set<String> setImportedProps = new HashSet<>(listImportedProps);
-        List<String> listPropsToDelete = listPropsToCheck.stream()
-                .filter(prop -> !setImportedProps.contains(prop))
-                .collect(Collectors.toList());
-        System.out.println(listPropsToDelete);
 
         List<Integer> uniqueElementsIndices = new ArrayList<>();
         List<String> uniqueElements = new ArrayList<>();
@@ -61,11 +55,5 @@ public class DefaultPropsTypeCleanTask {
         }
 
         return contents;
-    }
-
-    public static void main(String[] args) {
-        List<String> contents = EditFileUtils.readFile("C:\\Users\\lefeb\\IdeaProjects\\Clean Code Java\\src\\task\\test.txt");
-        contents = defaultPropsTypeCleanTask(contents);
-        EditFileUtils.setContents("C:\\Users\\lefeb\\IdeaProjects\\Clean Code Java\\src\\task\\test.txt", contents);
     }
 }

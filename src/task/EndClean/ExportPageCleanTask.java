@@ -27,7 +27,6 @@ public class ExportPageCleanTask {
             String cleanedContent = content.replace(" ", "").replace("\n", "").replace("\t", "").replace(",", "");
             listImportedProps.add(cleanedContent);
         }
-        System.out.println("list_imported_props\n" + listImportedProps);
 
         String pathOfPage = getPageFromView(path);
         List<String> contentsExport = EditFileUtils.readFile(pathOfPage);
@@ -44,7 +43,6 @@ public class ExportPageCleanTask {
             }
         }
         List<String> listPropsToCheck = contentsExport.subList(indexStartToCheck, indexEndToCheck);
-        System.out.println("list_props_to_check\n" + listPropsToCheck);
 
         // Création de la liste des propriétés à conserver
         List<Integer> listPropsToDelete = new ArrayList<>();
@@ -66,9 +64,6 @@ public class ExportPageCleanTask {
                 listPropsToDelete.add(i);
             }
         }
-        System.out.println("list_props_to_save\n" + listPropsToDelete);
-
-
 
         // Suppression des propriétés inutiles dans le contenu
         for (int i = listPropsToDelete.size() - 1; i >= 0; i--) {
