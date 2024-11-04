@@ -52,6 +52,9 @@ public class ExportPageCleanTask {
             String props = listPropsToCheck.get(i);
             boolean toAdd = true;
             for (String line : listImportedProps) {
+                if (line.isEmpty()){
+                    break;
+                }
                 Pattern pattern = Pattern.compile(line + Dico.Regex.MATCH_AFTER_WITH_NO_LETTER_AND_NUMBER_CHEVRON_SLASH);
                 Matcher matcher = pattern.matcher(props);
                 if (matcher.find()) {
