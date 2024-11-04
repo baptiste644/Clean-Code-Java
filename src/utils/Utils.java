@@ -53,8 +53,8 @@ public class Utils {
         }
 
         // Extraire les trois premiers caractères
-        String tri = fileName.substring(0, 3);
-        String[] list = path.split("\\\\" + tri + "\\\\");
+        String tri = getTri();
+        String[] list = path.split("\\\\" + tri.toLowerCase() + "\\\\");
 
         if (list.length < 2) {
             throw new IllegalArgumentException("Le chemin ne contient pas suffisamment de parties.");
