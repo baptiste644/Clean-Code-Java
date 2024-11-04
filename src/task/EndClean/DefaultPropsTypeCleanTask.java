@@ -29,7 +29,7 @@ public class DefaultPropsTypeCleanTask {
         System.out.println(listImportedProps);
 
         int indexStartToCheck = Utils.getLineIndex(contents, Dico.Regex.MATCH_DEFAULT_PROPS);
-        int indexEndToCheck = Utils.getLineIndexFromStart(contents, Dico.Regex.MATCH_BRACKET, indexStartToCheck) - 1;
+        int indexEndToCheck = Utils.getLineIndexFromStart(contents, Dico.Regex.MATCH_BRACKET_AND_COMMA_POINT, indexStartToCheck) - 1;
 
         List<String> listPropsToCheck = contents.subList(indexStartToCheck, indexEndToCheck).stream()
                 .map(content -> content.split(":")[0].replace(" ", "").replace("\n", "").replace("\t", "").replace(",", ""))

@@ -39,7 +39,7 @@ public class Utils {
     }
 
     public static String getTri() {
-        return "src";
+        return "Rof";
     }
 
     public static String getFileName(String path) {
@@ -63,7 +63,7 @@ public class Utils {
         // Modifier le chemin pour remplacer "components" par "pages" et "View.jsx" par "Page.jsx"
         list[1] = list[1].replace("components", "pages").replace("View.jsx", "Page.jsx");
 
-        String resultPath = String.join("/" + tri + "/", list);
+        String resultPath = String.join("/" + tri.toLowerCase() + "/", list);
         System.out.println(resultPath);
         return resultPath;
     }

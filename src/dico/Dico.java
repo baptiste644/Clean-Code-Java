@@ -11,7 +11,8 @@ public class Dico {
         public static final String MATCH_DEFAULT_PROPS = ".defaultProps = \\{";
         public static final String MATCH_BRACKET = "\\}";
         public static final String MATCH_BRACKET_AND_COMMA_POINT = "\\};";
-        public static final String MATCH_WITH_NO_LETTER_AND_NUMBER = "[^0-9a-zA-Z]";
+        public static final String MATCH_BEFORE_WITH_NO_LETTER_AND_NUMBER_CHEVRON_SLASH = "(?<![^0-9a-zA-Z</>])";
+        public static final String MATCH_AFTER_WITH_NO_LETTER_AND_NUMBER_CHEVRON_SLASH = "(?![^0-9a-zA-Z</>])";
         public static final String MATCH_TAB = "\\t";
         public static final String MATCH_START_EXPORT_PROPS_IN_PAGE = "";
         public static final String MATCH_AUTO_CLOSE = "/>";

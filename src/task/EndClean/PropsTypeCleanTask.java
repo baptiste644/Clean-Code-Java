@@ -29,7 +29,7 @@ public class PropsTypeCleanTask {
 
         // Trouver les propriétés à vérifier
         int indexStartToCheck = Utils.getLineIndex(contents, Dico.Regex.MATCH_PROPS_TYPE);
-        int indexEndToCheck = Utils.getLineIndexFromStart(contents, Dico.Regex.MATCH_BRACKET, indexStartToCheck) - 1;
+        int indexEndToCheck = Utils.getLineIndexFromStart(contents, Dico.Regex.MATCH_BRACKET_AND_COMMA_POINT, indexStartToCheck) - 1;
 
         // Créer la liste des propriétés à vérifier
         List<String> listPropsToCheck = new ArrayList<>();

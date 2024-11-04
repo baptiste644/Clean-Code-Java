@@ -40,7 +40,7 @@ public class ImportViewCleanTask {
         for (int i = 0; i < listImportedProps.size(); i++) {
             String props = listImportedProps.get(i);
             for (String line : listPropsToCheck) {
-                Pattern pattern = Pattern.compile(props);
+                Pattern pattern = Pattern.compile(Dico.Regex.MATCH_BEFORE_WITH_NO_LETTER_AND_NUMBER_CHEVRON_SLASH + props + Dico.Regex.MATCH_AFTER_WITH_NO_LETTER_AND_NUMBER_CHEVRON_SLASH);
                 Matcher matcher = pattern.matcher(line);
                 if (matcher.find()) {
                     listPropsToSave.add(i);

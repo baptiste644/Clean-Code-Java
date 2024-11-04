@@ -36,6 +36,13 @@ public class ExportPageCleanTask {
                 "<" + getFileName(path).substring(0, getFileName(path).lastIndexOf(".jsx")));
         int indexEndToCheck = Utils.getLineIndexFromStart(contentsExport, Dico.Regex.MATCH_AUTO_CLOSE, indexStartToCheck) - 1;
 
+        // Suppression ligne vide
+        for (int i = indexEndToCheck; i >= indexStartToCheck; i--) {
+            if (contentsExport.get(i).trim().isEmpty()) {
+                contentsExport.remove(i);
+                indexEndToCheck--;
+            }
+        }
         List<String> listPropsToCheck = contentsExport.subList(indexStartToCheck, indexEndToCheck);
         System.out.println("list_props_to_check\n" + listPropsToCheck);
 
@@ -45,7 +52,7 @@ public class ExportPageCleanTask {
             String props = listPropsToCheck.get(i);
             boolean toAdd = true;
             for (String line : listImportedProps) {
-                Pattern pattern = Pattern.compile(line + Dico.Regex.MATCH_WITH_NO_LETTER_AND_NUMBER);
+                Pattern pattern = Pattern.compile(line + Dico.Regex.MATCH_AFTER_WITH_NO_LETTER_AND_NUMBER_CHEVRON_SLASH);
                 Matcher matcher = pattern.matcher(props);
                 if (matcher.find()) {
                     toAdd = false;
