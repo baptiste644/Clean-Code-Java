@@ -18,6 +18,11 @@ public class Dico {
         public static final String MATCH_AUTO_CLOSE = "/>";
     }
 
+    public static class Schema {
+        public static final String MATCH_PARENTHESIS_AND_BRACKET = ")}";
+        public static final String MATCH_CLOSE_FRAGMENT = "</>";
+    }
+
     public static class Information {
         public static final String INFORMATION = "Information";
         public static final String ERREUR = "Erreur";
