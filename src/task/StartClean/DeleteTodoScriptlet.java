@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.IOException;
@@ -23,13 +24,15 @@ public class DeleteTodoScriptlet {
                     && Pattern.compile("\\{(?!.*?TODO SCRIPTLET.*?(&&|\\?)).*?(&&|\\?)").matcher(contents.get(i + 2)).find()
                     && Pattern.compile("<>").matcher(contents.get(i + 3)).find()
                     && Pattern.compile("\\s*FIN TODO SCRIPTLET \\*/\\}").matcher(contents.get(i + 5)).find()) {
-
+                List<Integer> listToDeleteTemp = new ArrayList<>();
                 for (int j = i + 1; j < contents.size(); j++) {
                     if (Pattern.compile("\\{/\\* TODO SCRIPTLET").matcher(contents.get(j)).find()) {
                         if (Pattern.compile("</>").matcher(contents.get(j + 2)).find()
                                 && Pattern.compile("\\)\\}").matcher(contents.get(j + 3)).find()
                                 && Pattern.compile("\\s*FIN TODO SCRIPTLET \\*/\\}").matcher(contents.get(j + 5)).find()) {
                             System.out.println("yes1");
+                            listToDelete.addAll(listToDeleteTemp);
+                            listToDeleteTemp.clear();
                             listToDelete.add(i);
                             listToDelete.add(i+1);
                             listToDelete.add(i + 4);
@@ -40,6 +43,16 @@ public class DeleteTodoScriptlet {
                             listToDelete.add(j + 5);
                             System.out.println(listToDelete);
                             break;
+                        } else if (Pattern.compile("</>").matcher(contents.get(j + 2)).find()
+                                && Pattern.compile("\\) : \\(").matcher(contents.get(j + 3)).find()
+                                && Pattern.compile("<>").matcher(contents.get(j + 4)).find()
+                                && Pattern.compile("\\s*FIN TODO SCRIPTLET \\*/\\}").matcher(contents.get(j + 6)).find()) {
+                            System.out.println("yes1");
+                            listToDeleteTemp.clear();
+                            listToDeleteTemp.add(j);
+                            listToDeleteTemp.add(j + 1);
+                            listToDeleteTemp.add(j + 5);
+                            listToDeleteTemp.add(j + 6);
                         } else {
                             break;
                         }
@@ -47,7 +60,7 @@ public class DeleteTodoScriptlet {
                 }
             }
         }
-
+        Collections.sort(listToDelete);
         for (int i = listToDelete.size() - 1; i >= 0; i--) {
             contents.remove(listToDelete.get(i).intValue());
         }
